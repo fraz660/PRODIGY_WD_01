@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
+<title>Interactive Navigation Menu</title>
+<!-- Google Fonts: Poppins for modern UI -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 200vh;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+    z-index: 999;
+    height: 60px;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  nav.scrolled {
+    /* subtle dark gradient background */
+    background: linear-gradient(90deg, #34495e, #2c3e50);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+  }
+
+  ul.menu {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+  }
+
+  ul.menu li {
+    position: relative;
+  }
+
+  /* Icon container */
+  ul.menu li .icon {
+    margin-right: 6px;
+    vertical-align: middle;
+    color: #e67e22;
+    transition: color 0.3s ease;
+  }
+
+  /* Nav links */
+  ul.menu li a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease,
+      transform 0.2s ease,
+      box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  nav.scrolled ul.menu li a {
+    color: #ecf0f1;
+  }
+
+  ul.menu li a:hover,
+  ul.menu li a:focus {
+    color: #ffffff;
+    background-color: #e67e22;
+    outline: none;
+    box-shadow: 0 6px 20px rgba(230, 126, 34, 0.7);
+    transform: scale(1.07);
+  }
+
+  /* Animated underline on nav links */
+  ul.menu li a::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    background: #e67e22;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    margin-top: 6px;
+    opacity: 0.8;
+  }
+
+  ul.menu li a:hover::after,
+  ul.menu li a:focus::after {
+    width: 100%;
+  }
+
+  /* Section styling */
+  section {
+    padding: 80px 20px 40px;
+    max-width: 720px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section h1 {
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 2.4rem;
+    color: #2c3e50;
+  }
+
+  section p {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    color: #444;
+  }
+
+  /* Subtle decorative background pattern - very light dots */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(rgba(230,230,230,0.15) 1px, transparent 1px);
+    background-size: 25px 25px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 400px) {
+    ul.menu {
+      gap: 18px;
+      font-size: 1rem;
+    }
+    section {
+      padding: 80px 16px 30px;
+      max-width: 90%;
+      margin-bottom: 40px;
+      border-radius: 12px;
+    }
+    section h1 {
+      font-size: 1.9rem;
+    }
+  }
+</style>
+<!-- FontAwesome icons CDN -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav id="navbar" role="navigation" aria-label="Primary Navigation">
+  <ul class="menu">
+    <li><a href="#home" tabindex="0"><i class="fas fa-home icon" aria-hidden="true"></i>Home</a></li>
+    <li><a href="#about" tabindex="0"><i class="fas fa-info-circle icon" aria-hidden="true"></i>About</a></li>
+    <li><a href="#services" tabindex="0"><i class="fas fa-cogs icon" aria-hidden="true"></i>Services</a></li>
+    <li><a href="#contact" tabindex="0"><i class="fas fa-envelope icon" aria-hidden="true"></i>Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home" style="background: #ffffff;">
+  <h1>Welcome to Home</h1>
+  <p>Discover the latest updates and news from our company. We are committed to delivering excellence and innovation to our valued customers.</p>
+  <p>Browse through our offerings and get to know what makes us stand out in the industry.</p>
+  <p>Feel free to explore the various sections of our site and learn more about how we can serve your needs.</p>
+</section>
+
+<section id="about" style="background: #ffffff;">
+  <h1>About Us</h1>
+  <p>We are a passionate team of professionals dedicated to crafting high-quality solutions tailored to our clients’ needs.</p>
+  <p>Our mission is to empower businesses through innovative technology and exceptional service.</p>
+  <p>With years of experience in the industry, we bring expertise and commitment to every project we undertake.</p>
+</section>
+
+<section id="services" style="background: #ffffff;">
+  <h1>Services</h1>
+  <p>Our comprehensive suite of services includes software development, consultancy, and project management.</p>
+  <p>We leverage cutting-edge technologies to deliver scalable and reliable solutions.</p>
+  <p>Our team works closely with clients to ensure their vision is realized with precision and efficiency.</p>
+</section>
+
+<section id="contact" style="background: #ffffff;">
+  <h1>Contact</h1>
+  <p>Get in touch with us to discuss your next project or request more information about our services.</p>
+  <p>We are eager to collaborate and provide customized solutions that meet your goals.</p>
+  <p>Reach out via email, phone, or through the contact form on our website &mdash; we’re here to help!</p>
+</section>
+
+<script>
+  // Navbar scroll background toggle
+  const navbar = document.getElementById('navbar');
+  const scrollThreshold = 50;
+
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > scrollThreshold) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Animate sections on scroll into view
+  const sections = document.querySelectorAll('section');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  };
+
+  const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+</script>
+
+</body>
+</html>
+
